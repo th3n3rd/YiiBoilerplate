@@ -1,65 +1,48 @@
 # YiiBoilerplate
-We use this folder structure setup on [Clevertech](http://www.clevertech.biz) for our own projects. 
+Struttura utilizzata da [Clevertech](http://www.clevertech.biz) e successivamente personalizzata in questo repository.
 
-### Overview
-
-**YiiBoilerplate**, aims to provide *Yii developers* an application folder structure with sufficient flexibility to satisfy development needs from simple to enterprise applications.
-
-It may look a little bit too complex at first sight but, at Clevertech, we understand that needs may vary along the development life cycle of a product in order to fulfill customer's requirements and that commonly forces developers to modify the initial folder structure, thus making very hard for a new developer to jump in and 'understand' where everything is located.
-
-In order to avoid such time consuming tasks, **ease the life of our beloved developers** and increase productivity, we make use of this folder structure template for our projects.
-
-### Overall Structure
-Below the directory structure we are using:
+### Dettaglio Struttura
 
 	/
     backend/
         components/
-	config/
-            environments/
-            	main-private.php *
-            	main-prod.php
-      			params-private.php *
-      			params-prod.php
-    	main-env.php *
-    	main-local.php *
-    	main.php
-    	params-env.php *
-    	params-local.php *
-    	params.php
-    	test.php
-	controllers/
-		SiteController.php
-		...
-	extensions/
-            behaviors/
-            validators/
-        lib/
-        models/
-        	FormModel.php
-        	...
-        modules/
-        runtime/ *
-        views/
-        	layouts/
-        	site/
-        widgets/
-        www/
-            assets/ *
-            css/
-            images/
-            js/
-            themes/
-            index.php
-            .htaccess
+	    config/
+            main-dev.php *
+            main-prod.php *
+            main.php
+            params-dev.php *
+            params-prod.php *
+            params.php
+            test.php
+        controllers/
+            SiteController.php
+            ...
+        extensions/
+                behaviors/
+                validators/
+            lib/
+            models/
+                FormModel.php
+                ...
+            modules/
+            runtime/ *
+            views/
+                layouts/
+                site/
+            widgets/
+            www/
+                assets/ *
+                css/
+                images/
+                js/
+                themes/
+                index.php
+                .htaccess
     common/
         components/
         config/
-            environments/
-            	params-private.php *
-            	params-prod.php
-            params-env.php *
-            params-local.php *
+            params-dev.php *
+            params-prod.php *
             params.php
         data/
         extensions/
@@ -86,16 +69,11 @@ Below the directory structure we are using:
     frontend/
 		components/
 		config/
-	    	environments/
-	    		main-private.php *
-	    		main-prod.php
-	    		params-private.php *
-	    		params-prod.php
-	    	main-env.php *
-	    	main-local.php
+	    	main-dev.php *
+	    	main-prod.php
 	    	main.php
-	    	params-env.php *
-	    	params-local.php *
+	    	params-dev.php *
+	    	params-prod.php *
 	    	params.php
 	    	test.php
 		controllers/
@@ -134,106 +112,79 @@ Below the directory structure we are using:
     yiic
     yiic.bat
 
-When working in a team development environment, using any of the VCS (Version Control System) available (i.e. Git, SVN), the files and folders marked with an asterisk should **not** be included in the revision system.
+Se si lavora con un VCS (Version Control System) come Git o SVN, le directory/files marcati da un asterisco **non** devono essere inclusi nel sistema di versioning.
 
-###Top Level Directories
-At the top-most level, we have:  
+###Architettura Applicazione
+
+Al livello più alto abbiamo:
   
-* ***backend***: the backend application which will be mainly used by site administrators to manage the whole system (avoiding admin modules at frontend application to avoid confusion)   
-* ***console***: the console application that is compound of the console commands required for the system.   
-* ***frontend***: the frontend application that is the main interface for end users. On a website development, this would be what the site users would see.  
-* ***common***: the directory whose content is shared among  all the above applications.
-* ***test***: the folder where we include all of our BDD system tests.
+* ***backend***: conterrà l'applicazione di backend per l'amministrazione dell'applicazione (in modo da evitare moduli admin nel frontend causando confusione)
+* ***console***: conterrà l'applicazione a linea di comando.
+* ***frontend***: conterrà l'applicazione responsabile del frontend.
+* ***common***: conterrà i componenti comuni alle applicazione di cui sopra.
+* ***test***: conterrà i test necessari per validare il corretto funzionamento dell'applicazione, seguendo il TDD (e BDD).
 
-The whole application is divided into three applications: backend, fronted and console. Following [the directory structure of the yii project site](http://www.yiiframework.com/wiki/155/the-directory-structure-of-the-yii-project-site), with some twist on its configuration. The common folder is to store all files (extensions, components, behaviors, models, etc… ) that are shared among the mentioned applications.
+L'intera applicazione è suddivisa in 3 sotto applicazioni: backend, frontend e console, seguendo la struttura utilizzata dal [sito del framework yii](http://www.yiiframework.com/wiki/155/the-directory-structure-of-the-yii-project-site).
 
-###Application Directories
-The directory structure of each application is very similar. For example **backend** and **frontend** both share the same directory structure with a slight variation at the ***www*** folder of the **frontend** and the inclusion of bootstrap theme and extensions for the **backend**, to easy the task to create Administrative panels.
+###Directory Applicazioni
+La struttura delle directory interna alle sotto applicazioni è molto simile.
+In particolare abbiamo:
 
-The shared folder structure is this one:  
+* ***components***: contiene i componenti (es. helpers, application components) utilizzate soltanto dalla specifica sotto applicazione
+* ***config***: contiene le configurazioni utilizzate soltanto dalla specifica sotto applicazione
+* ***controllers***: contiene le classi controller
+* ***extensions***: estensioni di yii utilizzate soltanto dalla specifica sotto applicazione
+* ***lib***: librerie di terze parti utilizzate soltanto dalla specifica sotto applicazione
+* ***models***: contiene le classi model utilizzate soltanto dalla specifica applicazione
+* ***modules***: contiene i moduli utilizzati soltanto dalla specifica sotto applicazione
+* ***views***: contiene le view utilizzate dalle singole azioni delle classi controller
+* ***widgets***: contiene le classi widget utilizzate soltanto dalla specifica sotto applicazione
+* ***www***: la directory pubblica per la sotto applicazione
 
-* ***components***: contains components (i.e. helpers, application components) that are only used by this application  
-* ***config***: contains application specific configuration files.
-* ***controllers***: contains controller classes
-* ***extensions***: Yii extensions that are only used by this application
-* ***lib***: third-party libraries that are only used by this application
-* ***models***: contains model classes that are specific for this application
-* ***modules***: contains modules that are only used by this application
-* ***views***: stores controller actions view scripts
-* ***widgets***: stores Yii widgets only used by this application. 
-* ***www***: the web root for this application.
+Le directory **extensions** e **widgets** potrebbero essere inglobate all'interno di **components** ma si è preferito lasciarle esplicite per facilitare la ricerca allo sviluppatore.
 
-We have created **extensions** and **widgets** folders, that could had been obviously included in the **components** folder, in order to clearly differentiate the types of components that could exist into a Yii application and easy the task to find them. So, for example, developers won't search for a widget that renders a jQuery UI plugin within a folder that has application wide components, or helpers, or extensions, or… 
+La struttura interna alla sotto applicazione **console** differisce dalle altre due nel senso che non necessita di **controllers**, **views**, **widgets**, and **www**.
+Infatti tutte le funzionalità necessarie sono disponibili all'interno della directory **commands** che contiene le classi command.
+Inoltre è stata aggiunga alla sotto applicazione **console** la responsabilità di contenere la directory **migrations** con la quale sarà possibile eseguire le varie DB migrations.
 
-The directory structure for **console** application differs from the others as it doesn't require **controllers**, **views**, **widgets**, and **www**. It has a **commands** directory to store all console command class files.
+###Applicazione Common
+La sotto applicazione common che risiede all'interno della directory common conterrà tutte le directory/files condivisi dalle altre sotto applicazioni, in modo tale da ridurre la duplicazione del codice.
 
-When developing a large project with a long development cycle, we constantly need to adjust the database structure. For this reason, we also use the DB migration feature to keep track of database changes. We store all DB migrations under the **migrations** directory in **console**.
+La struttura interna è molto simile a quella delle sotto applicazioni **backend** e **frontend** in modo da facilitare il lavoro allo sviluppatore.
 
-###The Common Directory
-The common directory contains the files that are shared among applications. For example, every application may need to access the database using ActiveRecord. Therefore, we can store the AR model classes under the common directory. Similarly, if some helper or widget classes are used in more than one application, we should also put them under common to avoid duplication of code.
+###Configurazione dell'Applicazione
+Generalmente le sotto applicazioni di un sistema condividono alcune configurazioni, per esempio i parametri della connessione al DB.
+Per ridurre la duplicazione del codice la gestione della configurazione è stata centralizzata e inserita in **common**.
 
-To facilitate the maintenance of code, we organize the common directory in a structure similar to that of an application. For example, we have components, models, lib, etc.
+####Come Configurare l'Applicazione
+Lo schema di configurazione adottato da YiiBoilerplate può sembrare complicato, quindi è necessario esplicitarne il suo funzionamento:
 
+* **main.php**: configurazione di base per la sotto applicazione
+* **main-dev.php**: configurazione valida per l'ambiente di sviluppo (developer) per la sotto applicazione
+* **main-prod.php**: configurazione valida per l'ambiente di produzione per la sotto applicazione
+* **params.php**: parametri di applicazione di base per la stto applicazione
+* **params-local.php**: parametri di applicazione validi per l'ambiente di sviluppo (developer) per la stto applicazione
+* **params-local.php**: parametri di applicazione validi per l'ambiente di produzioe per la stto applicazione
+* **test.php**: configurazione valida durante l'esecuzione dei test
 
-<span style="float:right;">***- source: [Yii Framework Site](http://www.yiiframework.com/wiki/155/the-directory-structure-of-the-yii-project-site#hh3)***</span>
-<div style="clear:both">&nbsp;</div>
+A seconda del valore della costante **YII_DEBUG** l'applicazione esegue lo switch tra gli ambienti di sviluppo e produzione, verranno richiamati rispettivamente **main-dev.php** o **main-prod.php** andando a sovrascrivere le configurazioni presenti anche in **main.php**.
 
-###Application Configurations
-Applications of the same system usually share some common configurations, such as DB connection configuration, application parameters, etc. In order to eliminate duplication of code, we should extract these common configurations and store them in a central place. In our setting, we put them under the config directory in **common**.
+Stessa cosa vale per i parametri di configurazione.
 
-####How to configure the application
-The configuration for this boilerplate is not that complicated as it seems at first sight. As mentioned before, if our system has both **backend** and **frontend** applications and they both share the same DB configuration. We just need to configure one of the files on the **config** sub-directory under the **common** folder.
+####Lo script _runpostdeploy_
+Lo script di postdeply va a creare le directory **non** condivise come **runtime** e **assets** all'interno delle sotto applicazioni.
+Se specificato avvia l'esecuzione delle migrazioni, è sconsigliato automatizzare le migrazioni in ambiente di sviluppo.
 
-The files within the config folder of each application and common folder requires a bit of explanation. When working in a team environment, different developers may have different development environments. These environments are also often different from the production environment. This is why the configuration folders on each application contains a list of files that try to avoid interference among the different environments. 
-
-As you can see, the config folders include a set of files:
-
-* environments/***params-private.php***: This is to have the application parameters required for the developer on its development environment.
-* environments/**params-prod.php**: This is to have the application parameters required for the application on **production**
-* environments/**main-private.php**: The application configuration settings required for the developer on its development environment.
-* environments/**main-prod.php**: The application configuration settings required for the application on **production**
-* **main-env.php**: This file will be override with the  environment specific application configuration selected by the **runpostDeploy** script (as we are going to explain after)
-* **main-local.php**: This is the application configuration options for the developer*
-* **params-env.php**: This will be override with the environment specific parameters selected by the **runpostdeploy** script 
-* **params-local.php**: The application parameters for the developer*
-* **params.php**: The application parameters
-* **test.php**: Test application configuration options
-
-
-The configuration tree override in the following way:
-
-***local settings > environment specific > main configuration file*** 
-
-That means that local settings override environment specific and its result override main configuration file. And this is true for all configurations folders being the common configuration folder settings predominant over the application specific one:
-
-**common shared params > application params**
-**common shared config > application config**
-
-There is a slight difference between the ****-private.php*** and the ****-local.php** files. The first ones are automatically read with the ***runpostdeploy*** script and it could be settings that developers sitting on same machines in internal networks, and the latest is the programmer's configurations. 
-
-The base configuration should be put under version control, like regular source code, so that it can be shared by every developer. The local configuration should **not** be put under version control and should only exist in each developer's working directory.
-
-
-####The _runpostdeploy_ script
-The project has a very useful script that automatically creates the required and **not** shared folders for a Yii application: the **runtime** and **assets** folders, extracts the configuration settings specified for a specific environment and copies them to the ****-env.php*** files and runs migrations when not on private environments -we believe that migrations should be always run manually by developers on their machines.
-
-From the application's root folder, to run the script simply do:
+Per avviare lo script di post deploy basta posizionarsi all'interno della root dell'applicazione ed eseguire:
 
 ```
-./runpostdeploy environmentType migrations
+./runpostdeploy migrations
 ```
 
-* **environmentType** (required): can be "any" of the ones you configure on the **environments** folders (i.e. `./runpostdeploy private` to use ****-private.php*** configurations)
-* **migrations** (optional): could be "**migrate**"" or "**no-migrate**". 
-	* migrate: will run migrations
-	* no-migrate: will not run migrations (on private wont run them anyway)
+Gli argomenti disponibili sono:
 
-###YiiBooster library
-We have included [YiiBooster](http://yii-booster.clevertech.biz) widget library to the boilerplate. For more information regarding this library and its use
-please visit [YiiBooster Site](http://yii-booster.clevertech.biz).
+* **migrations** (optional): could be "**migrate**"" or "**no-migrate**".
+	* migrate: esegue le migrazioni
+	* no-migrate: non esegue le migrazioni
 
 ====
-
-> [![Clevertech](http://clevertech.biz/images/slir/w54-h36-c54:36/images/site/index/home/clevertech-logo.png)](http://www.clevertech.biz)    
-well-built beautifully designed web applications  
-[www.clevertech.biz](http://www.clevertech.biz)

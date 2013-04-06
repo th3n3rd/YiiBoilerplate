@@ -1,11 +1,14 @@
 <?php
 /**
- * params-local.php
+ * File for development application params.
  *
- * @author: antonio ramirez <antonio@clevertech.biz>
- * Date: 7/22/12
- * Time: 5:59 PM
- *
+ * @category  Application
+ * @package   Configuration
+ * @author    Marco Garofalo <garofalo@olomedia.it>
+ * @author    antonio ramirez <antonio@clevertech.biz>
+ * @copyright 2012 Olomedia
+ * @license   http://www.olomedia.it Licenza
+ * @link      http://www.olomedia.it
  *
  * ANY CONFIGURATION OPTIONS HERE WILL REPLACE THOSE INCLUDED ON THE params-env.php file!!!
  * It holds your local configuration settings.

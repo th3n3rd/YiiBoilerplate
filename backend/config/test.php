@@ -1,30 +1,33 @@
 <?php
 /**
- * test.php
+ * File for test configuration.
  *
- * configuration file for testing
- *
- * @author: antonio ramirez <antonio@clevertech.biz>
- * Date: 7/24/12
- * Time: 8:08 AM
+ * @category  Application
+ * @package   Configuration
+ * @author    Marco Garofalo <garofalo@olomedia.it>
+ * @author    antonio ramirez <antonio@clevertech.biz>
+ * @copyright 2012 Olomedia
+ * @license   http://www.olomedia.it Licenza
+ * @link      http://www.olomedia.it
  */
-return CMap::mergeArray(
-	require(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main.php'),
-	array(
-		'components' => array(
-			'fixture' => array(
-				'class' => 'system.test.CDbFixtureManager'
-			),
-			/* uncomment if we require to run commands against test database */
-			/*
-			 'db' => array(
-				'connectionString' => $params['testdb.connectionString'],
-				'username' => $params['testdb.username'],
-				'password' => $params['testdb.password'],
-				'charset' => 'utf8'
-			),
-			*/
 
-		)
-	)
+return CMap::mergeArray(
+    require(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main.php'),
+    array(
+        'components' => array(
+            'fixture' => array(
+                'class' => 'system.test.CDbFixtureManager'
+            ),
+            /* uncomment if we require to run commands against test database */
+            /*
+                'db' => array(
+                   'connectionString' => $params['testdb.connectionString'],
+                   'username' => $params['testdb.username'],
+                   'password' => $params['testdb.password'],
+                   'charset' => 'utf8'
+               ),
+               */
+
+        )
+    )
 );

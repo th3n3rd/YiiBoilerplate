@@ -1,31 +1,31 @@
 <?php
 /**
- * params.php
+ * File for application paramas.
  *
- * @author: antonio ramirez <antonio@clevertech.biz>
- * Date: 7/22/12
- * Time: 1:38 PM
+ * @category  Application
+ * @package   Configuration
+ * @author    Marco Garofalo <garofalo@olomedia.it>
+ * @author    antonio ramirez <antonio@clevertech.biz>
+ * @copyright 2012 Olomedia
+ * @license   http://www.olomedia.it Licenza
+ * @link      http://www.olomedia.it
  */
 
-$paramsLocalFile = $consoleConfigDir . DIRECTORY_SEPARATOR . 'params-local.php';
-$paramsLocalFileArray = file_exists($paramsLocalFile) ? require($paramsLocalFile) : array();
-
-$paramsEnvFile = $consoleConfigDir . DIRECTORY_SEPARATOR . 'params-env.php';
+$paramsEnvFile = $consoleConfigDir . DIRECTORY_SEPARATOR . (YII_DEBUG ? 'params-dev' : 'params-prod.php');
 $paramsEnvFileArray = file_exists($paramsEnvFile) ? require($paramsEnvFile) : array();
 
-$paramsCommonFile = $consoleConfigDir . DIRECTORY_SEPARATOR  . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .
-	'common' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'params.php';
+$paramsCommonFile = $consoleConfigDir . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .
+    'common' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'params.php';
 
 $paramsCommonArray = file_exists($paramsCommonFile) ? require($paramsCommonFile) : array();
 
 return CMap::mergeArray(
-	$paramsCommonArray,
-	// merge console specific with resulting env-local merge *override by local
-	CMap::mergeArray(
-		array(
-			// add here all console-specific parameters
-		),
-		// merge environment parameters with local *override by local
-		CMap::mergeArray($paramsEnvFileArray, $paramsLocalFileArray)
-	)
+    $paramsCommonArray,
+    // merge console specific with resulting env-local merge *override by local
+    CMap::mergeArray(
+        array(// add here all console-specific parameters
+        ),
+        // merge environment parameters with local *override by local
+        $paramsEnvFileArray
+    )
 );
