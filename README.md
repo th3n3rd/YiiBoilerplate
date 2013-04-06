@@ -20,24 +20,24 @@ Struttura utilizzata da [Clevertech](http://www.clevertech.biz) e successivament
         extensions/
                 behaviors/
                 validators/
-            lib/
-            models/
-                FormModel.php
-                ...
-            modules/
-            runtime/ *
-            views/
-                layouts/
-                site/
-            widgets/
-            www/
-                assets/ *
-                css/
-                images/
-                js/
-                themes/
-                index.php
-                .htaccess
+        lib/
+        models/
+            FormModel.php
+            ...
+        modules/
+        runtime/ *
+        views/
+            layouts/
+            site/
+        widgets/
+        www/
+            assets/ *
+            css/
+            images/
+            js/
+            themes/
+            index.php
+            .htaccess
     common/
         components/
         config/
@@ -118,7 +118,7 @@ Se si lavora con un VCS (Version Control System) come Git o SVN, le directory/fi
 
 Al livello più alto abbiamo:
   
-* ***backend***: conterrà l'applicazione di backend per l'amministrazione dell'applicazione (in modo da evitare moduli admin nel frontend causando confusione)
+* ***backend***: conterrà l'applicazione di backend per i moduli di amministrazione (in modo da evitare moduli admin nel frontend causando confusione)
 * ***console***: conterrà l'applicazione a linea di comando.
 * ***frontend***: conterrà l'applicazione responsabile del frontend.
 * ***common***: conterrà i componenti comuni alle applicazione di cui sopra.
@@ -126,9 +126,11 @@ Al livello più alto abbiamo:
 
 L'intera applicazione è suddivisa in 3 sotto applicazioni: backend, frontend e console, seguendo la struttura utilizzata dal [sito del framework yii](http://www.yiiframework.com/wiki/155/the-directory-structure-of-the-yii-project-site).
 
-###Directory Applicazioni
-La struttura delle directory interna alle sotto applicazioni è molto simile.
-In particolare abbiamo:
+###Struttura Directory Applicazioni
+La struttura interna delle sotto applicazioni **backend** e **frontend** è molto simile, i files utilizzati sono però specifici per le sotto applicazioni e quindi non condivisibili.
+Nel caso in cui si ha la necessità di utilizzare gli stessic componenti è conveniente posizionare questi file nella sotto applicazione **common** che esiste proprio per fornire questo servizio.
+
+Analizziamo ora la struttura interna mensionata in precedenza:
 
 * ***components***: contiene i componenti (es. helpers, application components) utilizzate soltanto dalla specifica sotto applicazione
 * ***config***: contiene le configurazioni utilizzate soltanto dalla specifica sotto applicazione
@@ -143,7 +145,7 @@ In particolare abbiamo:
 
 Le directory **extensions** e **widgets** potrebbero essere inglobate all'interno di **components** ma si è preferito lasciarle esplicite per facilitare la ricerca allo sviluppatore.
 
-La struttura interna alla sotto applicazione **console** differisce dalle altre due nel senso che non necessita di **controllers**, **views**, **widgets**, and **www**.
+La struttura interna alla sotto applicazione **console** differisce dalle altre due nel senso che non necessita di **controllers**, **views**, **widgets**, **www**.
 Infatti tutte le funzionalità necessarie sono disponibili all'interno della directory **commands** che contiene le classi command.
 Inoltre è stata aggiunga alla sotto applicazione **console** la responsabilità di contenere la directory **migrations** con la quale sarà possibile eseguire le varie DB migrations.
 
@@ -157,7 +159,7 @@ Generalmente le sotto applicazioni di un sistema condividono alcune configurazio
 Per ridurre la duplicazione del codice la gestione della configurazione è stata centralizzata e inserita in **common**.
 
 ####Come Configurare l'Applicazione
-Lo schema di configurazione adottato da YiiBoilerplate può sembrare complicato, quindi è necessario esplicitarne il suo funzionamento:
+Lo schema di configurazione adottato da YiiBoilerplate può sembrare complicato, inoltre questo è stato modificato come segue e quindi è necessario esplicitarne il suo funzionamento:
 
 * **main.php**: configurazione di base per la sotto applicazione
 * **main-dev.php**: configurazione valida per l'ambiente di sviluppo (developer) per la sotto applicazione
@@ -183,7 +185,7 @@ Per avviare lo script di post deploy basta posizionarsi all'interno della root d
 
 Gli argomenti disponibili sono:
 
-* **migrations** (optional): could be "**migrate**"" or "**no-migrate**".
+* **migrations** (optional): può essere "**migrate**"" o "**no-migrate**".
 	* migrate: esegue le migrazioni
 	* no-migrate: non esegue le migrazioni
 
