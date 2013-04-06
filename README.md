@@ -18,8 +18,8 @@ Struttura utilizzata da [Clevertech](http://www.clevertech.biz) e successivament
             SiteController.php
             ...
         extensions/
-                behaviors/
-                validators/
+            behaviors/
+            validators/
         lib/
         models/
             FormModel.php
