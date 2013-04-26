@@ -5,7 +5,6 @@
  * @category  Application
  * @package   Configuration
  * @author    Marco Garofalo <garofalo@olomedia.it>
- * @author    antonio ramirez <antonio@clevertech.biz>
  * @copyright 2012 Olomedia
  * @license   http://www.olomedia.it Licenza
  * @link      http://www.olomedia.it
@@ -23,7 +22,7 @@ Yii::setPathOfAlias('common', $root . DIRECTORY_SEPARATOR . 'common');
 Yii::setPathOfAlias('frontend', $root . DIRECTORY_SEPARATOR . 'frontend');
 Yii::setPathOfAlias('www', $root . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . 'www');
 
-$mainEnvFile = $frontendConfigDir . DIRECTORY_SEPARATOR . (YII_DEBUG ? 'main-dev' : 'main-prod.php');
+$mainEnvFile = $frontendConfigDir . DIRECTORY_SEPARATOR . (YII_DEBUG ? 'main-dev.php' : 'main-prod.php');
 $mainEnvConfiguration = file_exists($mainEnvFile) ? require($mainEnvFile) : array();
 
 return CMap::mergeArray(

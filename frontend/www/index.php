@@ -1,10 +1,13 @@
 <?php
 /**
- * index.php
+ * Frontend Application Entry Script.
  *
- * @author: antonio ramirez <antonio@clevertech.biz>
- * Date: 7/22/12
- * Time: 11:13 AM
+ * @category  Application
+ * @package   Configuration
+ * @author    Marco Garofalo <garofalo@olomedia.it>
+ * @copyright 2012 Olomedia
+ * @license   http://www.olomedia.it Licenza
+ * @link      http://www.olomedia.it
  */
 
 defined('YII_DEBUG') or define('YII_DEBUG', true);

@@ -5,7 +5,6 @@
  * @category  Application
  * @package   Configuration
  * @author    Marco Garofalo <garofalo@olomedia.it>
- * @author    antonio ramirez <antonio@clevertech.biz>
  * @copyright 2012 Olomedia
  * @license   http://www.olomedia.it Licenza
  * @link      http://www.olomedia.it
@@ -25,7 +24,7 @@ Yii::setPathOfAlias('common', $root . DIRECTORY_SEPARATOR . 'common');
 //Yii::setPathOfAlias('frontend', $root . DIRECTORY_SEPARATOR . 'frontend');
 //Yii::setPathOfAlias('backend', $root . DIRECTORY_SEPARATOR . 'backend');
 
-$mainEnvFile = $consoleConfigDir . DIRECTORY_SEPARATOR . (YII_DEBUG ? 'main-dev' : 'main-prod.php');
+$mainEnvFile = $consoleConfigDir . DIRECTORY_SEPARATOR . (YII_DEBUG ? 'main-dev.php' : 'main-prod.php');
 $mainEnvConfiguration = file_exists($mainEnvFile) ? require($mainEnvFile) : array();
 
 return CMap::mergeArray(
@@ -70,6 +69,38 @@ return CMap::mergeArray(
                         'filter' => 'CLogFilter'
                     )
                 )
+            ),
+            'doctrine' => array(
+                'class' => 'Wildkat\YiiExt\DoctrineOrm\DoctrineContainer',
+                'dbal' => array(
+                    'default' => array(
+                        'driver' => 'pdo_mysql',
+                        'host' => 'localhost',
+                        'dbname' => 'test',
+                        'user' => 'test',
+                        'password' => 'test',
+                    ),
+                ),
+                'cache' => array(
+                    'default' => array(
+                        'driver' => 'ArrayCache',
+                        'namespace' => '__app',
+                    ),
+                ),
+                'entityManager' => array(
+                    'default' => array(
+                        'connection' => 'default',
+                        'metadataCache' => 'default',
+                        'queryCache' => 'default',
+                        'entityPath' => 'application.models',
+                        'mappingDriver' => 'YamlDriver',
+                        'mappingPaths' => array(
+                            'common.extensions.Wildkat.YiiExt.DoctrineOrm.mapping'
+                        ),
+                        'proxyDir' => 'application.data',
+                        'proxyNamespace' => 'Proxy',
+                    ),
+                ),
             ),
 //			'db' => array(
 //				'connectionString' => $params['db.connectionString'],

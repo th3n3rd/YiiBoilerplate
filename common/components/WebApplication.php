@@ -1,12 +1,13 @@
 <?php
 /**
- * WebApplication.php
+ * File for Web Application Class.
  *
- * From Alex Makarov boilerplate
- *
- * @author: antonio ramirez <antonio@clevertech.biz>
- * Date: 7/23/12
- * Time: 12:44 AM
+ * @category  Application
+ * @package   Components
+ * @author    Marco Garofalo <garofalo@olomedia.it>
+ * @copyright 2012 Olomedia
+ * @license   http://www.olomedia.it Licenza
+ * @link      http://www.olomedia.it
  */
 class WebApplication extends CWebApplication {
 

@@ -5,7 +5,7 @@
  * @category  Application
  * @package   Configuration
  * @author    Marco Garofalo <garofalo@olomedia.it>
- * @author    antonio ramirez <antonio@clevertech.biz>
+ *
  * @copyright 2012 Olomedia
  * @license   http://www.olomedia.it Licenza
  * @link      http://www.olomedia.it
@@ -14,7 +14,7 @@
 $commonConfigDir = dirname(__FILE__);
 
 // if exists, include it, otherwise set as an empty array
-$commonEnvParamsFile = $commonConfigDir . DIRECTORY_SEPARATOR . (YII_DEBUG ? 'params-dev' : 'params-prod.php');
+$commonEnvParamsFile = $commonConfigDir . DIRECTORY_SEPARATOR . (YII_DEBUG ? 'params-dev.php' : 'params-prod.php');
 $commonEnvParams = file_exists($commonEnvParamsFile) ? require($commonEnvParamsFile) : array();
 
 return CMap::mergeArray(

@@ -5,13 +5,12 @@
  * @category  Application
  * @package   Configuration
  * @author    Marco Garofalo <garofalo@olomedia.it>
- * @author    antonio ramirez <antonio@clevertech.biz>
  * @copyright 2012 Olomedia
  * @license   http://www.olomedia.it Licenza
  * @link      http://www.olomedia.it
  */
 
-$paramsEnvFile = $frontendConfigDir . DIRECTORY_SEPARATOR . (YII_DEBUG ? 'params-dev' : 'params-prod.php');
+$paramsEnvFile = $frontendConfigDir . DIRECTORY_SEPARATOR . (YII_DEBUG ? 'params-dev.php' : 'params-prod.php');
 $paramsEnvFileArray = file_exists($paramsEnvFile) ? require($paramsEnvFile) : array();
 
 $paramsCommonFile = $frontendConfigDir . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .
